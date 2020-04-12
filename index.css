@@ -1,12 +1,12 @@
 :root {
   --default-font-size: 17px;
-  --heading-font-size: 64px;
+  --heading-font-size: 48px;
   --default-border-width: 1px;
 
   /* Default theme */
   --color-primary: #2a58ad;
   --color-secondary: #808bbf;
-  --color-background: #e9efff;
+  --color-background: #fff;
   --color-surface: #e9efff;
   --color-success: #008a63;
   --color-error: #a62e46;
@@ -37,8 +37,12 @@ h1 {
   font-size: var(--heading-font-size);
 }
 
+.app-container {
+  background-color: var(--color-background);
+}
+
 .display-none {
-  display: none;
+  display: none !important;
 }
 
 .card {
@@ -119,26 +123,26 @@ h1 {
 .theme-pallete-container {
   display: flex;
   flex-wrap: wrap;
-  padding: 8px;
-  margin-top: 48px;
+  flex-direction: column;
+  padding: 0 16px;
   justify-content: center;
 }
 
 .theme-pallete {
-  margin-right: 16px;
+  margin-bottom: 16px;
   width: 20px;
   height: 20px;
-  border: 0.5px solid var(--color-on-primary);
+  /* border: 0.5px solid var(--color-on-primary); */
   border-radius: 50%;
 }
 
 .theme-pallete:hover {
   cursor: pointer;
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .theme-pallete__active {
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .content-container {
@@ -147,12 +151,49 @@ h1 {
   flex-direction: column;
   padding-left: 16px;
   padding-top: 8px;
-  background-color: var(--color-background);
   color: var(--color-on-background);
 }
 
 .content-heading {
+  text-align: center;
+  font-weight: bold;
 }
 
 .footer {
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid var(--color-primary);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1.2s linear infinite; /* Safari */
+  animation: spin 1.2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -20,13 +20,13 @@ const THEMES = {
   theme1: {
     primary: "#2a58ad",
     secondary: "#808bbf",
-    background: "#e9efff",
+    background: "#fff",
     surface: "#e9efff",
     success: "#008a63",
     error: "#a62e46",
     colorOnPrimary: "#e9efff",
     colorOnSecondary: "#e9efff",
-    colorOnBackground: "#000",
+    colorOnBackground: "#000",  
     colorOnSurface: "#000",
     colorOnError: "#e9efff",
     border: "#cccccc",
@@ -109,7 +109,6 @@ const onSideNavbarLinkClick = function (event, selectedLinkId) {
 };
 
 const themePalleteClickHandler = function (event, selectedPalleteKey) {
-  console.log(selectedPalleteKey);
   const selectedPallete = event.currentTarget;
   const prevActivePallete = document.querySelector(".theme-pallete__active");
 
@@ -128,7 +127,7 @@ const changeTheme = function (themeKey) {
   });
 };
 
-const onWindowLoad = function () {
+const initApp = function () {
   const date = new Date();
   const links = document.querySelectorAll(".side-navbar-link");
   const themePalleteContainer = document.querySelector(
@@ -159,6 +158,17 @@ const onWindowLoad = function () {
   interval = setInterval(() => {
     timeContainer.innerHTML = new Date().toLocaleTimeString();
   }, 1000);
+};
+
+const onWindowLoad = function () {
+  const loader = document.querySelector(".loader-container");
+  const appContainer = document.querySelector(".app-container");
+
+  setTimeout(() => {
+    loader.classList.add("display-none");
+    appContainer.classList.remove("display-none");
+    initApp();
+  }, 1300);
 };
 
 const onWindowUnload = function () {
