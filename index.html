@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | Kartik Sharma - Software Engineer</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <section class="app-container">
+        <nav class="side-navbar">
+          <div class="card card-navbar">
+            <div class="card-image">
+              <img src="./images/profile-image.png" />
+            </div>
+            <p class="card-title">Kartik Sharma</p>
+          </div>
+
+          <ul class="side-navbar-links">
+            <li class="side-navbar-link side-navbar-link__active">
+              <span>Dashboard</span>
+            </li>
+            <li class="side-navbar-link"><span>About</span></li>
+            <li class="side-navbar-link"><span>Projects</span></li>
+            <li class="side-navbar-link"><span>Contact</span></li>
+          </ul>
+
+          <div>
+            <p class="time"></p>
+          </div>
+        </nav>
+        <section class="content-container">
+          <div id="dashboard">
+            <h1 class="content-heading">Dashboard</h1>
+          </div>
+          <div id="about" class="display-none">
+            <h1 class="content-heading">About</h1>
+          </div>
+          <div id="projects" class="display-none">
+            <h1 class="content-heading">Projects</h1>
+          </div>
+          <div id="contact" class="display-none">
+            <h1 class="content-heading">Contact</h1>
+          </div>
+          <div class="theme-pallete-container"></div>
+        </section>
+      </section>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
