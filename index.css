@@ -24,7 +24,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Open Sans', 'sans-serif';
+  font-family: "Open Sans", "sans-serif";
   font-size: var(--default-font-size);
   color: var(--color-on-background);
 }
@@ -114,6 +114,11 @@ h1 {
   background-color: var(--color-surface);
 }
 
+.nav-icon {
+  width: 16px;
+  margin-right: 24px;
+}
+
 .time {
   font-size: 17px;
   padding-left: 8px;
@@ -132,7 +137,6 @@ h1 {
   margin-bottom: 16px;
   width: 20px;
   height: 20px;
-  /* border: 0.5px solid var(--color-on-primary); */
   border-radius: 50%;
 }
 
@@ -173,8 +177,8 @@ h1 {
   border: 8px solid #f3f3f3;
   border-radius: 50%;
   border-top: 8px solid var(--color-primary);
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   -webkit-animation: spin 1.2s linear infinite; /* Safari */
   animation: spin 1.2s linear infinite;
 }
