@@ -481,7 +481,15 @@ function App() {
           {renderLinks()}
           <Box bg={themeColor100}>
             <Footer>
-              <ResumeLink fontsize={16}>Resume</ResumeLink>
+              <ResumeLink fontsize={16}>
+                {" "}
+                <a
+                  download
+                  href="https://github.com/ksjc1995/ksjc1995.github.io/raw/master/kartik-resume.pdf"
+                >
+                  Resume
+                </a>
+              </ResumeLink>
               <div>
                 <a
                   style={{ marginRight: "8px" }}
