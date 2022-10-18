@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { cloneDeep } from "lodash";
 import { FaLinkedin, FaGithub, FaEnvelope, FaReact } from "react-icons/fa";
 import {
@@ -21,9 +21,38 @@ import "./App.css";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 const themeColor = "#E1F5FE";
-const themeColor100 = "#546E7A";
+const dark500 = "#546E7A";
 const themeColor300 = "#4FC3F7";
 const dark = "#37474F";
+
+const THEMES = {
+  blue: {
+    themeColor: "#E1F5FE",
+    themeColor300: "#4FC3F7",
+    dark: "#37474F",
+    dark500: "#546E7A",
+  },
+
+  red: {
+    themeColor: "#FFEBEE",
+    themeColor300: "#E57373",
+    dark: "#37474F",
+    dark500: "#546E7A",
+  },
+
+  green: {
+    themeColor: "#E8F5E9",
+    themeColor300: "#81C784",
+    dark: "#37474F",
+    dark500: "#546E7A",
+  },
+  orange: {
+    themeColor: "#FFF3E0",
+    themeColor300: "#FFB74D",
+    dark: "#37474F",
+    dark500: "#546E7A",
+  },
+};
 
 const Layout = styled.div`
   display: grid;
@@ -47,7 +76,7 @@ const Box = styled.div`
 
     &:hover{
       ${Highlight} {
-        background-color: ${themeColor};
+        background-color: ${(props) => props.theme.themeColor};
       }
     }
   `
@@ -91,13 +120,13 @@ const Image = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  background: repeating-linear-gradient(
+  background: ${(props) => `repeating-linear-gradient(
     90deg,
-    ${themeColor},
-    ${themeColor} 1px,
-    ${themeColor100} 2px,
-    ${themeColor100} 2px
-  );
+    ${props.theme.themeColor},
+    ${props.theme.themeColor} 1px,
+    ${props.theme.dark500} 2px,
+    ${props.theme.dark500} 2px
+  )`};
   margin-bottom: 18px;
   border-radius: 50%;
   transition: transform 0.1s ease-in-out;
@@ -142,7 +171,7 @@ const Footer = styled.div`
     color: white;
 
     &:hover {
-      color: ${dark};
+      color: ${(props) => props.theme.dark};
     }
   }
 `;
@@ -151,12 +180,12 @@ const ResumeLink = styled(Text)`
   font-weight: bold;
   &:hover {
     cursor: pointer;
-    color: ${dark};
+    color: ${(props) => props.theme.dark};
   }
 `;
 
 const Underline = styled.span`
-  border-bottom: 2px solid ${themeColor100};
+  border-bottom: 2px solid ${dark500};
 `;
 
 const TimelineWrapper = styled.div`
@@ -176,7 +205,7 @@ const EmailWrapper = styled.div`
   justify-content: center;
 
   a {
-    color: ${themeColor300};
+    color: ${(props) => props.theme.themeColor300};
   }
 `;
 
@@ -202,10 +231,28 @@ const ProjectsWrapper = styled.div`
 
 const IconsWrapper = styled(Center)`
   font-size: 24px;
-  color: ${dark};
+  color: ${(props) => props.theme.dark};
 
   > * {
     margin-right: 16px;
+  }
+`;
+
+const Themes = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const ColorCircle = styled.div`
+  margin-right: 8px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: ${(props) => THEMES[props.color].themeColor300};
+
+  :hover {
+    cursor: pointer;
+    transform: scale(1.1);
   }
 `;
 
@@ -218,12 +265,19 @@ const LINKS = [
 
 function App() {
   const gridRef = useRef(null);
+  const [theme, setTheme] = useState(THEMES.blue);
   const [links, setLinks] = useState(LINKS);
   const [activeLink, setActiveLink] = useState("journey");
+
+  const { themeColor, themeColor300, dark, dark500 } = theme;
 
   useEffect(() => {
     handleLinkClick(null, 0, "Journey", "journey");
   }, []);
+
+  const handleThemeChange = (theme) => {
+    setTheme(theme);
+  };
 
   const handleLinkClick = (event, linkIndex, name, id) => {
     if (name !== "") {
@@ -476,56 +530,77 @@ function App() {
 
   return (
     <div className="App">
-      <Layout>
-        <Box rratios={["4fr", "1fr"]} cratios={[]}>
-          {renderLinks()}
-          <Box bg={themeColor100}>
-            <Footer>
-              <ResumeLink fontsize={16}>
-                {" "}
-                <a
-                  download
-                  href="https://github.com/ksjc1995/ksjc1995.github.io/raw/master/kartik-resume.pdf"
-                >
-                  Resume
-                </a>
-              </ResumeLink>
-              <div>
-                <a
-                  style={{ marginRight: "8px" }}
-                  href="https://github.com/ksjc1995/"
-                  target={"_blank"}
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/kartik-sharma-742b4867/"
-                  target={"_blank"}
-                >
-                  <FaLinkedin />
-                </a>
-              </div>
-            </Footer>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Box rratios={["4fr", "1fr"]} cratios={[]}>
+            {renderLinks()}
+            <Box bg={dark500}>
+              <Footer>
+                <ResumeLink fontsize={16}>
+                  {" "}
+                  <a
+                    download
+                    href="https://github.com/ksjc1995/ksjc1995.github.io/raw/master/kartik-resume.pdf"
+                  >
+                    Resume
+                  </a>
+                </ResumeLink>
+                <div>
+                  <a
+                    style={{ marginRight: "8px" }}
+                    href="https://github.com/ksjc1995/"
+                    target={"_blank"}
+                  >
+                    <FaGithub />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/kartik-sharma-742b4867/"
+                    target={"_blank"}
+                  >
+                    <FaLinkedin />
+                  </a>
+                </div>
+              </Footer>
+            </Box>
           </Box>
-        </Box>
-        <Box bg={themeColor}>
-          <Wrapper>
-            <ImageWrapper>
-              <Image />
-            </ImageWrapper>
-            <Headline>
-              Hi there! I am{" "}
-              <Name>
-                <Underline>KARTIK SHARMA</Underline>
-              </Name>
-            </Headline>
-            <Description>
-              I am a full stack developer with 3 years of extensive experience
-              building scalable, responsive & pixel perfect web applications.
-            </Description>
-          </Wrapper>
-        </Box>
-      </Layout>
+          <Box bg={themeColor}>
+            <Wrapper>
+              <ImageWrapper>
+                <Image />
+              </ImageWrapper>
+              <Headline>
+                Hi there! I am{" "}
+                <Name>
+                  <Underline>KARTIK SHARMA</Underline>
+                </Name>
+              </Headline>
+              <Description>
+                I am a full stack developer with 3 years of extensive experience
+                building scalable, responsive & pixel perfect web applications.
+              </Description>
+
+              <Themes>
+                <ColorCircle
+                  color="blue"
+                  onClick={() => handleThemeChange(THEMES.blue)}
+                />
+                <ColorCircle
+                  color="red"
+                  onClick={() => handleThemeChange(THEMES.red)}
+                />
+                <ColorCircle
+                  color="green"
+                  onClick={() => handleThemeChange(THEMES.green)}
+                />
+                <ColorCircle
+                  color="orange"
+                  onClick={() => handleThemeChange(THEMES.orange)}
+                />
+              </Themes>
+            </Wrapper>
+          </Box>
+        </Layout>
+      </ThemeProvider>
     </div>
   );
 }
