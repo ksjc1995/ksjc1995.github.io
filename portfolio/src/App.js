@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { cloneDeep } from "lodash";
-import { FaLinkedin, FaGithub, FaEnvelope, FaReact } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+  FaReact,
+  FaVuejs,
+} from "react-icons/fa";
 import {
   SiJavascript,
   SiTypescript,
@@ -63,6 +69,7 @@ const Layout = styled.div`
 const Box = styled.div`
   background-color: ${(props) => props.bg};
   display: grid;
+  grid-gap: 16px;
   grid-template-columns: repeat(1, 1fr);
   grid-template-columns: ${(props) =>
     props.cratios && props.cratios.length > 0 && props.cratios.join(" ")};
@@ -225,7 +232,8 @@ const ProjectsWrapper = styled.div`
   }
 
   a {
-    margin: 16px 0;
+    margin: 16px auto;
+    width: 100%;
   }
 `;
 
@@ -303,35 +311,23 @@ function App() {
           <TimelineWrapper>
             {" "}
             <Timeline mode="alternate">
-              <Timeline.Item
-                color={themeColor300}
-                label={<TimelineLabel fontsize={16}>2015-19</TimelineLabel>}
-              >
+              <Timeline.Item color={themeColor300}>
                 <strong>B.Tech. (CSE)</strong> <br />
                 Jaypee University of Information Tech.
               </Timeline.Item>
-              <Timeline.Item
-                color={themeColor300}
-                label={
-                  <TimelineLabel fontsize={16}>
-                    (Feb)2020-(Jun)2021
-                  </TimelineLabel>
-                }
-              >
+              <Timeline.Item color={themeColor300}>
                 <strong>Software Engineer</strong> <br />
                 Wednesday Solutions
               </Timeline.Item>
 
-              <Timeline.Item
-                color={themeColor300}
-                label={
-                  <TimelineLabel fontsize={16}>Jul(2021)-Present</TimelineLabel>
-                }
-              >
+              <Timeline.Item color={themeColor300}>
                 <strong>Associate Technology L2</strong> <br />
                 Publicis Sapient
               </Timeline.Item>
-              <Timeline.Item color={themeColor300}>Loading...</Timeline.Item>
+              <Timeline.Item color={themeColor300}>
+                <strong>Engineering Manager - Frontend</strong> <br />
+                Harmoney
+              </Timeline.Item>
             </Timeline>
           </TimelineWrapper>
         </Box>
@@ -371,7 +367,7 @@ function App() {
 
   const renderProjects = () => {
     return (
-      <ProjectsWrapper crations={["1fr", "1fr", "1fr"]}>
+      <ProjectsWrapper crations={["1fr"]}>
         <a href="https://color-guessing-game-react.vercel.app/" target="_blank">
           <Badge.Ribbon
             color={themeColor300}
@@ -382,10 +378,7 @@ function App() {
               </Center>
             }
           >
-            <Card
-              hoverable
-              style={{ width: 240, border: `1px solid ${themeColor300}` }}
-            >
+            <Card hoverable style={{ border: `1px solid ${themeColor300}` }}>
               <Card.Meta
                 title={
                   <strong>
@@ -407,10 +400,7 @@ function App() {
               </Center>
             }
           >
-            <Card
-              hoverable
-              style={{ width: 240, border: `1px solid ${themeColor300}` }}
-            >
+            <Card hoverable style={{ border: `1px solid ${themeColor300}` }}>
               <Card.Meta
                 title={
                   <strong>
@@ -435,10 +425,7 @@ function App() {
               </Center>
             }
           >
-            <Card
-              hoverable
-              style={{ width: 240, border: `1px solid ${themeColor300}` }}
-            >
+            <Card hoverable style={{ border: `1px solid ${themeColor300}` }}>
               <Card.Meta
                 title={
                   <strong>
@@ -459,10 +446,7 @@ function App() {
               </Center>
             }
           >
-            <Card
-              hoverable
-              style={{ width: 240, border: `1px solid ${themeColor300}` }}
-            >
+            <Card hoverable style={{ border: `1px solid ${themeColor300}` }}>
               <Card.Meta
                 title={
                   <strong>
@@ -523,6 +507,7 @@ function App() {
           <SiJavascript />
           <SiGit />
           <SiVisualstudiocode />
+          <FaVuejs />
         </IconsWrapper>
       </Box>
     );
@@ -575,8 +560,10 @@ function App() {
                 </Name>
               </Headline>
               <Description>
-                I am a full stack developer with 3 years of extensive experience
-                building scalable, responsive & pixel perfect web applications.
+                I am a full stack developer with 5+ years of extensive
+                experience building scalable, responsive & pixel perfect web
+                applications. Currently working as a Engineering Manager -
+                Frontend at Harmoney.
               </Description>
 
               <Themes>
